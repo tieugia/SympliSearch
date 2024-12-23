@@ -1,0 +1,68 @@
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+
+    .error {
+        color: red;
+        font-size: small;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+  
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+  
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+    }
+  
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  
+    .results-container {
+      margin-top: 20px;
+  
+      h3 {
+        text-align: center;
+        color: #007bff;
+      }
+  
+      .result-card {
+        background: #f8f9fa;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 15px;
+        font-size: 16px;
+  
+        p {
+          margin: 10px 0;
+  
+          strong {
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+  

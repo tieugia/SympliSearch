@@ -1,0 +1,73 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Sympli Search</h2>
+      <form (ngSubmit)="onSubmit()" [formGroup]="searchForm" novalidate>
+        <div class="mb-3">
+          <label for="keywords" class="form-label">Keywords</label>
+          <input
+            type="text"
+            id="keywords"
+            formControlName="keywords"
+            class="form-control"
+            [class.is-invalid]="searchForm.get('keywords')?.invalid && searchForm.get('keywords')?.touched"
+          />
+          <div *ngIf="searchForm.get('keywords')?.invalid && searchForm.get('keywords')?.touched" class="invalid-feedback">
+            Keywords are required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="url" class="form-label">URL</label>
+          <input
+            type="url"
+            id="url"
+            formControlName="url"
+            class="form-control"
+            [class.is-invalid]="searchForm.get('url')?.invalid && searchForm.get('url')?.touched"
+          />
+          <div *ngIf="searchForm.get('url')?.invalid && searchForm.get('url')?.touched" class="invalid-feedback">
+            A valid URL is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="searchEngine" class="form-label">Search Engine</label>
+          <select
+            id="searchEngine"
+            formControlName="searchEngine"
+            class="form-select"
+            [class.is-invalid]="searchForm.get('searchEngine')?.invalid && searchForm.get('searchEngine')?.touched"
+          >
+            <option *ngFor="let engine of searchEngines" [value]="engine.value">
+              {{ engine.label }}
+            </option>
+          </select>
+          <div *ngIf="searchForm.get('searchEngine')?.invalid && searchForm.get('searchEngine')?.touched" class="invalid-feedback">
+            Please select a search engine.
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" [disabled]="searchForm.invalid">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="result" class="mt-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Search Results</h5>
+        <p>
+          <strong>Engine:</strong> {{ searchForm.get('searchEngine')?.value | searchEngineName }}
+        </p>
+        <p>
+          <strong>Positions:</strong>
+          <span *ngIf="result.positions && result.positions.length">
+            {{ result.positions.join(', ') }}
+          </span>
+          <span *ngIf="!result.positions || !result.positions.length"> Not Found</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
